@@ -1,0 +1,97 @@
+/*
+  Saquetti Gestão — tokens de design
+  Contraste e foco pensados para WCAG.
+*/
+:root {
+  color-scheme: light;
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --bg: #f9fafb;
+  --surface: #ffffff;
+  --border: #e5e7eb;
+  --border-sub: #f3f4f6;
+  --text: #111827;
+  --text-heading: #111827;
+  --text-muted: #6b7280;
+  --text-dim: #9ca3af;
+  --text-h: var(--text-heading);
+  --code-bg: #f3f4f6;
+  --accent: #155dfc;
+  --accent-hover: #1248c7;
+  --accent-focus: #155dfc;
+  --accent-bg: #eff6ff;
+  --focus-ring: 2px solid var(--accent-focus);
+  --focus-offset: 2px;
+
+  font-family: var(--font-sans);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--text);
+  background: var(--bg);
+}
+
+html.dark {
+  color-scheme: dark;
+  --bg: #0f172a;
+  --surface: #1e293b;
+  --border: #334155;
+  --border-sub: #1e293b;
+  --text: #cbd5e1;          /* Slate 300 — contraste ~8:1, menos harsh que o Slate 100 */
+  --text-heading: #f1f5f9;  /* Slate 100 — headings mantêm hierarquia visual */
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+  --code-bg: #1e293b;
+  --accent: #60a5fa;
+  --accent-hover: #3b82f6;
+  --accent-bg: #1e3a5f;
+  color: var(--text);
+  background: var(--bg);
+}
+
+/* Transição suave ao trocar de tema — evita flash abrupto (fotossensibilidade) */
+html {
+  transition: background-color 0.25s ease;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+#__nuxt {
+  min-height: 100vh;
+}
+
+/* Acessibilidade: foco visível (teclado) */
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* Redução de movimento opcional */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Transição de página (Nuxt pageTransition name: fade) */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.15s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
