@@ -2,7 +2,7 @@
   <div class="flex h-screen overflow-hidden">
 
     <!-- ─── Painel esquerdo — formulário ─── -->
-    <div class="flex w-full lg:w-[45%] flex-col justify-between bg-white px-10 py-8 lg:px-14 lg:py-10 overflow-hidden">
+    <div class="flex w-full md:w-[45%] flex-col justify-between bg-white px-10 py-8 md:px-14 md:py-10 overflow-hidden min-w-0">
 
       <!-- Logo -->
       <div class="flex items-center gap-2.5">
@@ -145,7 +145,7 @@
 
     <!-- ─── Painel direito — branding ─── -->
     <div
-      class="hidden lg:flex lg:w-[55%] flex-col justify-between px-14 pt-14 pb-0 relative overflow-hidden"
+      class="hidden md:flex md:w-[55%] min-w-0 flex-col justify-center px-10 py-12 md:px-14 md:py-10 relative overflow-hidden"
       style="background: linear-gradient(145deg, #1d4ed8 0%, #155dfc 40%, #2d3aed 100%)"
     >
       <!-- Círculos decorativos -->
@@ -153,22 +153,13 @@
       <div class="absolute top-1/3 right-10 h-40 w-40 rounded-full bg-white/5" />
 
       <!-- Texto principal -->
-      <div class="relative z-10">
+      <div class="relative z-10 max-w-xl pr-2">
         <h2 class="text-3xl font-bold leading-tight text-white">
           Gerencie sua equipe e<br />operações com facilidade.
         </h2>
         <p class="mt-3 text-base text-blue-200">
           Acesse o painel de gestão e acompanhe sua equipe em tempo real.
         </p>
-      </div>
-
-      <!-- MacBook — saindo pela direita -->
-      <div class="relative z-10 mt-10 -mr-24">
-        <img
-          src="/macbook-pro-14.png"
-          alt="Saquetti Dashboard"
-          class="w-full drop-shadow-[0_24px_48px_rgba(0,0,0,0.35)]"
-        />
       </div>
     </div>
 
