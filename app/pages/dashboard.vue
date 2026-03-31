@@ -47,9 +47,9 @@
     <!-- 3. Block A — Cartões Ponto Pendentes (condicional) — destaque no topo, sem sombra -->
     <div
       v-if="cartoesPendentes.total > 0 && mostrarAlertaCartoesPendentes"
-      class="flex items-start gap-3 rounded-2xl border border-blue-200 bg-blue-50 p-4 border-l-[6px] border-l-[#155dfc] dark:border-blue-800 dark:bg-blue-950/35 dark:border-l-[#60a5fa]"
+      class="flex flex-col gap-3 rounded-2xl border border-blue-200 bg-blue-50 p-4 border-l-[6px] border-l-[#155dfc] sm:flex-row sm:items-start dark:border-blue-800 dark:bg-blue-950/35 dark:border-l-[#60a5fa]"
     >
-      <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl bg-blue-100 dark:bg-blue-900/40">
+      <div class="hidden sm:flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl bg-blue-100 dark:bg-blue-900/40">
         <svg class="h-5 w-5 text-[#155dfc] dark:text-[#60a5fa]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
         </svg>
@@ -74,7 +74,7 @@
         </ul>
         <p class="mt-1 text-[10px] text-blue-600/80 dark:text-blue-300/80">Período de referência: {{ currentMonthLabel }}</p>
       </div>
-      <div class="flex shrink-0 flex-col items-stretch gap-2 self-start sm:items-end">
+      <div class="flex shrink-0 flex-row sm:flex-col items-stretch gap-2 self-stretch sm:self-start sm:items-end">
         <NuxtLink
           to="/cartao-ponto"
           class="rounded-lg border border-blue-300 bg-white px-3 py-1.5 text-center text-xs font-semibold text-[#155dfc] transition-colors hover:bg-blue-50 dark:border-blue-600 dark:bg-[#1e293b] dark:text-[#60a5fa] dark:hover:bg-blue-950/50"
@@ -92,7 +92,7 @@
     </div>
 
     <!-- 4. Block B — Barra de filtros unificada -->
-    <div class="flex flex-wrap items-center gap-2 rounded-2xl bg-white dark:bg-[#1e293b] px-4 py-3 shadow-sm ring-1 ring-[#e5e7eb] dark:ring-[#334155]">
+    <div class="flex flex-wrap items-center gap-2 rounded-2xl bg-white dark:bg-[#1e293b] px-3 py-2.5 sm:px-4 sm:py-3 shadow-sm ring-1 ring-[#e5e7eb] dark:ring-[#334155]">
       <!-- Dropdown Empresa -->
       <div class="relative">
         <button
@@ -133,7 +133,7 @@
         </div>
       </div>
       <!-- Pills de período -->
-      <div class="flex items-center overflow-hidden rounded-lg border border-[#e5e7eb] dark:border-[#334155] bg-white dark:bg-[#1e293b] shadow-sm">
+      <div class="flex items-center overflow-x-auto rounded-lg border border-[#e5e7eb] dark:border-[#334155] bg-white dark:bg-[#1e293b] shadow-sm">
         <button
           v-for="p in periodos"
           :key="p"
@@ -186,7 +186,7 @@
         </div>
       </div>
       <!-- Exportar -->
-      <div class="relative ml-auto">
+      <div class="relative w-full sm:w-auto sm:ml-auto">
         <button
           @click.stop="exportDropdown = exportDropdown === 'visao_geral' ? null : 'visao_geral'"
           class="flex items-center gap-1.5 rounded-lg border border-[#e5e7eb] dark:border-[#334155] bg-white dark:bg-[#1e293b] px-3 py-1.5 text-xs font-medium text-[#374151] dark:text-[#cbd5e1] shadow-sm transition hover:bg-[#f9fafb] dark:hover:bg-[#334155]"
@@ -221,7 +221,7 @@
           v-for="a in atalhos"
           :key="a.to"
           :to="a.to"
-          class="group relative flex flex-col gap-2.5 rounded-2xl bg-white dark:bg-[#1e293b] p-4 shadow-sm ring-1 ring-[#e5e7eb] dark:ring-[#334155] transition-all hover:shadow-md hover:ring-[#155dfc]/40 dark:hover:ring-[#60a5fa]/40"
+          class="group relative flex flex-col gap-2 sm:gap-2.5 rounded-2xl bg-white dark:bg-[#1e293b] p-3 sm:p-4 shadow-sm ring-1 ring-[#e5e7eb] dark:ring-[#334155] transition-all hover:shadow-md hover:ring-[#155dfc]/40 dark:hover:ring-[#60a5fa]/40"
         >
           <div :class="['flex h-9 w-9 items-center justify-center rounded-xl [&>svg]:h-5 [&>svg]:w-5', a.iconeBg, a.iconeColor]" v-html="a.icone" />
           <div>
@@ -245,7 +245,7 @@
         <div
           v-for="card in cardsMetrica"
           :key="card.titulo"
-          class="rounded-2xl bg-white dark:bg-[#1e293b] p-5 shadow-sm ring-1 ring-[#e5e7eb] dark:ring-[#334155] transition hover:shadow-md"
+          class="rounded-2xl bg-white dark:bg-[#1e293b] p-3.5 sm:p-5 shadow-sm ring-1 ring-[#e5e7eb] dark:ring-[#334155] transition hover:shadow-md"
         >
           <div class="mb-3">
             <div :class="['flex h-9 w-9 items-center justify-center rounded-xl', card.iconeBg]" v-html="card.icone" />
@@ -275,10 +275,10 @@
       <!-- Tabela de Registros do Dia -->
       <div class="lg:col-span-2 rounded-2xl bg-white dark:bg-[#1e293b] shadow-sm ring-1 ring-[#e5e7eb] dark:ring-[#334155]">
 
-        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-[#f3f4f6] dark:border-[#334155] px-5 py-4">
-          <div>
-            <h3 class="text-sm font-bold text-[#111827] dark:text-[#f1f5f9]">Registros de Ponto — Hoje</h3>
-            <p class="mt-0.5 text-xs text-[#9ca3af] dark:text-[#64748b]">Atualizados em tempo real · {{ new Date().toLocaleDateString('pt-BR', { weekday: 'long', day: '2-digit', month: 'long' }) }}</p>
+        <div class="flex flex-wrap items-center justify-between gap-2 sm:gap-3 border-b border-[#f3f4f6] dark:border-[#334155] px-3.5 py-3 sm:px-5 sm:py-4">
+          <div class="min-w-0">
+            <h3 class="text-sm font-bold text-[#111827] dark:text-[#f1f5f9] truncate">Registros de Ponto — Hoje</h3>
+            <p class="mt-0.5 text-xs text-[#9ca3af] dark:text-[#64748b] truncate">Atualizados em tempo real · {{ new Date().toLocaleDateString('pt-BR', { weekday: 'long', day: '2-digit', month: 'long' }) }}</p>
           </div>
           <div class="flex items-center gap-2">
             <NuxtLink to="/registros" class="flex items-center gap-1.5 rounded-lg border border-[#e5e7eb] dark:border-[#334155] px-3 py-1.5 text-xs font-medium text-[#374151] dark:text-[#cbd5e1] hover:bg-[#f9fafb] dark:hover:bg-[#334155] transition-colors">

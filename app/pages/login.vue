@@ -2,7 +2,7 @@
   <div class="flex h-screen overflow-hidden">
 
     <!-- ─── Painel esquerdo — formulário ─── -->
-    <div class="flex w-full md:w-[45%] flex-col justify-between bg-white px-10 py-8 md:px-14 md:py-10 overflow-hidden min-w-0">
+    <div class="flex w-full md:w-[45%] flex-col justify-between bg-white px-5 py-6 sm:px-10 sm:py-8 md:px-14 md:py-10 overflow-hidden min-w-0">
 
       <!-- Logo -->
       <div class="flex items-center gap-2.5">

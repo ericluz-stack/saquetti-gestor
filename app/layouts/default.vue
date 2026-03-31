@@ -280,7 +280,7 @@
             <Transition name="slide-down">
               <div
                 v-if="notifAberta"
-                class="absolute right-0 top-full z-50 mt-2 w-80 rounded-xl border border-[#e5e7eb] dark:border-[#334155] bg-white dark:bg-[#1e293b] shadow-lg"
+                class="absolute right-0 top-full z-50 mt-2 w-[calc(100vw-2rem)] sm:w-80 max-w-80 rounded-xl border border-[#e5e7eb] dark:border-[#334155] bg-white dark:bg-[#1e293b] shadow-lg"
               >
                 <div class="flex items-center justify-between border-b border-[#f3f4f6] dark:border-[#334155] px-4 py-3">
                   <span class="text-sm font-semibold text-[#111827] dark:text-[#f1f5f9]">Notificações</span>
@@ -353,7 +353,7 @@
           <Transition name="slide-down">
             <div
               v-if="topPerfilAberto"
-              class="absolute right-0 top-full z-50 mt-2 w-56 rounded-xl border border-[#e5e7eb] dark:border-[#334155] bg-white dark:bg-[#1e293b] py-1 shadow-lg"
+              class="absolute right-0 top-full z-50 mt-2 w-[calc(100vw-2rem)] sm:w-56 max-w-56 rounded-xl border border-[#e5e7eb] dark:border-[#334155] bg-white dark:bg-[#1e293b] py-1 shadow-lg"
             >
               <!-- Cabeçalho -->
               <div class="px-3 py-2.5 border-b border-[#f3f4f6] dark:border-[#334155]">
@@ -424,10 +424,48 @@
       </header>
 
       <!-- Conteúdo da página -->
-      <main class="flex-1 overflow-y-auto">
+      <main class="flex-1 overflow-y-auto pb-16 lg:pb-0">
         <slot />
       </main>
     </div>
+
+    <!-- ═══════════════════════════════════════════
+         BOTTOM NAV — mobile only
+    ═══════════════════════════════════════════ -->
+    <nav class="fixed inset-x-0 bottom-0 z-30 flex items-stretch border-t border-[#e5e7eb] dark:border-[#334155] bg-white dark:bg-[#1e293b] safe-bottom lg:hidden">
+      <NuxtLink
+        v-for="item in bottomNavItems"
+        :key="item.to"
+        :to="item.to"
+        :class="[
+          'relative flex flex-1 flex-col items-center justify-center gap-0.5 py-2 text-[10px] font-medium transition-colors',
+          isActive(item.to)
+            ? 'text-[#155dfc] dark:text-[#60a5fa]'
+            : 'text-[#6b7280] dark:text-[#94a3b8]',
+        ]"
+      >
+        <span v-html="item.icon" class="[&>svg]:h-5 [&>svg]:w-5" />
+        {{ item.label }}
+        <span
+          v-if="item.badge"
+          class="absolute right-[calc(50%-14px)] top-1 h-2 w-2 rounded-full bg-[#155dfc] dark:bg-blue-600"
+        />
+      </NuxtLink>
+      <button
+        @click="mobileOpen = !mobileOpen"
+        :class="[
+          'relative flex flex-1 flex-col items-center justify-center gap-0.5 py-2 text-[10px] font-medium transition-colors',
+          mobileOpen
+            ? 'text-[#155dfc] dark:text-[#60a5fa]'
+            : 'text-[#6b7280] dark:text-[#94a3b8]',
+        ]"
+      >
+        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        Mais
+      </button>
+    </nav>
 
   </div>
 </template>
@@ -449,6 +487,8 @@ async function handleLogout() {
 }
 
 const { isDark, toggle } = useAppColorMode()
+
+watch(() => route.path, () => { mobileOpen.value = false })
 
 // Grupos de navegação abertos/fechados
 const gruposAbertos = ref<Record<string, boolean>>({
@@ -526,6 +566,14 @@ const navGrupos = [
       { label: 'Relatórios', to: '/relatorios', icon: icons.chart, badge: null },
     ],
   },
+]
+
+// ─── Bottom nav (mobile) ─────────────────────────────────────────────────────
+const bottomNavItems = [
+  { label: 'Início', to: '/dashboard', icon: icons.dashboard, badge: null },
+  { label: 'Equipe', to: '/funcionarios', icon: icons.users, badge: null },
+  { label: 'Registros', to: '/registros', icon: icons.clipboard, badge: 3 },
+  { label: 'Relatórios', to: '/relatorios', icon: icons.chart, badge: null },
 ]
 </script>
 

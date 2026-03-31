@@ -13,7 +13,7 @@
         Voltar para o login
       </NuxtLink>
 
-      <div class="rounded-2xl bg-white p-8 shadow-sm ring-1 ring-[#e5e7eb]">
+      <div class="rounded-2xl bg-white p-5 sm:p-8 shadow-sm ring-1 ring-[#e5e7eb]">
 
         <!-- ── Etapa 1: Solicitar reset ── -->
         <template v-if="etapa === 1">
